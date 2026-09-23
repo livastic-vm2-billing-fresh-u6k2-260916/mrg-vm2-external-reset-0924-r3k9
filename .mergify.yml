@@ -8,7 +8,7 @@ queue_rules:
     queue_conditions: []
     merge_conditions:
       - check-success = vm2-reset-ci
-      - label = vm2-release-r3k9
+      - check-success = vm2-release-hold
     batch_size: 1
     batch_max_wait_time: 0 seconds
     merge_method: merge
