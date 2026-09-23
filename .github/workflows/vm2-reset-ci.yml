@@ -1,0 +1,24 @@
+name: VM2 external merge reset invariant
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  vm2-reset-ci:
+    name: vm2-reset-ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject only the combined A plus B state
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f conflict/A.marker && -f conflict/B.marker ]]; then
+            echo "VM2_RESET_COMBINED_FAIL=true"
+            exit 1
+          fi
+          echo "VM2_RESET_COMBINED_FAIL=false"
