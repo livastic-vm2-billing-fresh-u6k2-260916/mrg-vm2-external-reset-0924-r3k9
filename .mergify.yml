@@ -1,0 +1,14 @@
+merge_queue:
+  mode: serial
+  max_parallel_checks: 2
+  reset_on_external_merge: always
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = vm2-reset-ci
+      - label = vm2-release-r3k9
+    batch_size: 1
+    batch_max_wait_time: 0 seconds
+    merge_method: merge
